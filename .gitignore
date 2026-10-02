@@ -1,0 +1,8 @@
+node_modules/
+pngseq_tmp*/
+pngseq_tmp2/
+pngseq_test/
+*.log
+assets/.diag.json
+assets/.host-alive
+assets/.rpc-last-call

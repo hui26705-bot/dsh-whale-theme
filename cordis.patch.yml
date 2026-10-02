@@ -1,0 +1,11 @@
+# dsh-whale-theme 配置包补丁：在空配置根上追加插件行，并声明深色外观默认值。
+# 生效顺序：各 bundle 补丁 → profiles/desktop/cordis.patch.yml → 命令行 --patch，
+# 后者覆盖前者。因此这里只是“默认”：用户在设置里手动切换外观后，以 profile
+# 补丁中的 ui-theme 为准，不会被插件锁死。
+- insert:
+    - id: whale-theme
+      name: 'dsh-whale-theme'
+    - id: ui-theme
+      name: '@deepseek-ai/dsh-client-ui-theme'
+      config:
+        preference: dark
