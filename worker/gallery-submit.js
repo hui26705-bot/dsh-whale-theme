@@ -23,8 +23,8 @@
  * 垃圾投稿进不了图库，只是多几个待关的 PR。
  */
 
-const MAX_BYTES = 12 * 1024 * 1024
-const ALLOWED_EXT = new Set(['png', 'jpg', 'jpeg', 'gif', 'webp'])
+const MAX_BYTES = 25 * 1024 * 1024
+const ALLOWED_EXT = new Set(['png', 'jpg', 'jpeg', 'gif', 'webp', 'mp4'])
 
 function cors(response) {
   response.headers.set('Access-Control-Allow-Origin', '*')
@@ -105,11 +105,11 @@ export default {
     }
     const buffer = await file.arrayBuffer()
     if (buffer.byteLength === 0 || buffer.byteLength > MAX_BYTES) {
-      return json({ ok: false, error: '文件为空或超过 12MB' }, 400)
+      return json({ ok: false, error: '文件为空或超过 25MB' }, 400)
     }
     const ext = extOf(file.name, file.type)
     if (ext === null) {
-      return json({ ok: false, error: '只收 PNG / JPG / GIF / WebP' }, 400)
+      return json({ ok: false, error: '只收 PNG / JPG / GIF / WebP / MP4' }, 400)
     }
     const filename = `dsh-${Date.now()}-${cleanName(file.name)}.${ext}`
     const rand = Math.random().toString(36).slice(2, 8)
